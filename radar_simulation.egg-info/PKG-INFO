@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: radar-simulation
+Version: 0.0.0
+Summary: A module for running radar simulations with configurable radar systems for signal processing algorithm effectiveness assessment.
+Home-page: https://github.com/ballrc/radar-simulation
+Author: Ryan Ball
+Requires-Python: >=3.13.1
+Requires-Dist: numpy
+Requires-Dist: matplotlib

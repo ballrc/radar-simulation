@@ -1,0 +1,9 @@
+{
+    "antenna": {
+        "type": "isotropic",
+        "peak_gain": 0
+    },
+    "signal_processing": {
+        "CFAR": "cfar_algorithm.py"
+    }
+}
