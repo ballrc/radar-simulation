@@ -1,0 +1,12 @@
+{
+    "platform": {
+        "position": [5e3, 0, 0],
+        "velocity": [-200, 0, 0],
+        "rcs": 10
+    },
+    "antenna": {
+        "type": "isotropic",
+        "position": [0, 0, 0],
+        "peak_gain": 0
+    }
+}

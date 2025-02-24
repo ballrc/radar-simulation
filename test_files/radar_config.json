@@ -1,0 +1,16 @@
+{
+    "platform": {
+        "position": [0, 0, 0],
+        "velocity": [0, 0, 0],
+        "rcs": 10
+    },
+    "antenna": {
+        "type": "isotropic",
+        "position": [0, 0, 0],
+        "peak_gain": 0
+    },
+    "modes": ["basic_search"],
+    "signal_processing": {
+        "CFAR": "cfar_algorithm.py"
+    }
+}
