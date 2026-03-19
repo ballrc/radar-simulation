@@ -1,2 +1,2 @@
-num_pulses, freq, pw, pri
-1, 9.4e9, 1e-6, 5e-5
+num_pulses, freq, pw, pri, cpi
+1, 300e6, 1e-6, 5e-4, 64

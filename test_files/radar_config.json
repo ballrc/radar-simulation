@@ -1,4 +1,8 @@
 {
+    "radarModel": "./radar_models/basic_radar/radar.py",
+    "name": "Basic Radar",
+    "sampleFreq": 1e7,
+    "peakPower": 10e3,
     "platform": {
         "position": [0, 0, 0],
         "velocity": [0, 0, 0],
@@ -7,10 +11,10 @@
     "antenna": {
         "type": "isotropic",
         "position": [0, 0, 0],
-        "peak_gain": 0
+        "peakGain": 0
     },
-    "modes": ["basic_search"],
-    "signal_processing": {
+    "mode": "basic_search",
+    "signalProcessing": {
         "CFAR": "cfar_algorithm.py"
     }
 }

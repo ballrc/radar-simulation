@@ -1,9 +1,15 @@
 # TODO
-- [ ] Implement 10 sec scenario
-    - [ ] Multiple CPIs
-    - [ ] Moving RDM
 - [ ] Make plotters
-    - [ ] RDM plotter
+    - [x] RDM plotter
     - [ ] Spectrogram plotter
     - [ ] Range-Time-Map plotter
     - [ ] Phase-Time-Map plotter
+- [x] Create radar base class
+    - [x] Process signal method
+        - [x] Match filter signal
+    - [ ] Load parameters from config
+        - Peak power
+        - Sample Freq
+        - Assume no gains/losses 
+- [ ] Debug spectral echo
+    - on RDM 2 signals appear. 1 has correct doppler shift, another is offset.

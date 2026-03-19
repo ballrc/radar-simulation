@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Radar Sim",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./scenario_controller.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-r", "./test_files/radar_config.json",
+                "-t", "./test_files/target_config.json"
+            ]
+        },
+        {
+            "name": "Single PRI Test",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./simple_scenario.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-r", "./test_files/radar_config.json",
+                "-t", "./test_files/target_config.json"
+            ]
+        }
+    ]
+}
