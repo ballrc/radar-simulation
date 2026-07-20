@@ -1,12 +1,12 @@
 import numpy as np
 import constants as c
 
-def oneWayProp(signal, radarParams, rng, fc, mode):
+def oneWayProp(signal, scenParams, rng, fc, mode):
     """Perform one-way propagation of a signal with included attenuation from losses/gains and phase shift.
     
     Inputs
     ---
-    radarParams (dictionary):
+    scenParams (dictionary):
         Dictionary containing the gains/loss parameters required to calculate one-way propagation.
     signal (numpy array):
         Numpy array containing the complex signal samples.
@@ -27,17 +27,17 @@ def oneWayProp(signal, radarParams, rng, fc, mode):
     match mode:
         case 'Tx':
             requiredParams = ['Ltx', 'Latm', 'Ptx', 'Gtx']
-            loss = radarParams['Ltx']
-            gain = radarParams['Ptx']*radarParams['Gtx']
+            loss = scenParams['Ltx']
+            gain = scenParams['Ptx']*scenParams['Gtx']
         case 'Rx':
             requiredParams = ['Lrx', 'Latm', 'Grx']
-            loss = radarParams['Lrx']
-            gain = radarParams['Grx']
+            loss = scenParams['Lrx']
+            gain = scenParams['Grx']
     for param in requiredParams:
-        if param not in radarParams:
-            raise Exception(f"Parameter {param} missing from radarParams!!")
+        if param not in scenParams:
+            raise Exception(f"Parameter {param} missing from scenParams!!")
     # Calculate one-way atmospheric loss
-    latm = 10**(radarParams['Latm']*1e-3*rng/10)
+    latm = 10**(scenParams['Latm']*1e-3*rng/10)
     # Calculate phase shift due to propagation
     lam = c.c/fc
     k = 2*np.pi/lam
@@ -48,12 +48,12 @@ def oneWayProp(signal, radarParams, rng, fc, mode):
     toa = rng/c.c
     return propSignal, toa
 
-def twoWayProp(signal, radarParams, rng, fc):
+def twoWayProp(signal, scenParams, rng, fc):
     """Perform two-way propagation of a signal with included attenuation from losses/gains and phase shift.
     
     Inputs
     ---
-    radarParams (dictionary):
+    scenParams (dictionary):
         Dictionary containing the gains/loss parameters required to calculate two-way propagation.
     signal (numpy array):
         Numpy array containing the complex signal samples.
@@ -69,14 +69,16 @@ def twoWayProp(signal, radarParams, rng, fc):
     toa (float):
         Time of arrival for signal based on range [seconds]
     """
+    # Check if parameters are givem
     requiredParams = ['Ltx', 'Lrx', 'Latm', 'Ptx', 'Gtx', 'Grx']
-    loss = radarParams['Ltx'] * radarParams['Lrx']
-    gain = radarParams['Ptx'] * radarParams['Gtx'] * radarParams['Grx']
     for param in requiredParams:
-        if param not in radarParams:
-            raise Exception(f"Parameter {param} missing from radarParams!!")
-    # Calculate one-way atmospheric loss
-    latm = 10**(radarParams['Latm']*1e-3*rng*2/10)
+        if param not in scenParams:
+            raise Exception(f"Parameter {param} missing from scenParams!!")
+    # Calculate loss and gain based on scenario parameters
+    loss = scenParams['Ltx'] * scenParams['Lrx']
+    gain = scenParams['Ptx'] * scenParams['Gtx'] * scenParams['Grx']
+    # Calculate two-way atmospheric loss
+    latm = 10**(scenParams['Latm']*1e-3*rng*2/10)
     # Calculate phase shift due to propagation
     lam = c.c/fc
     k = 2*np.pi/lam
