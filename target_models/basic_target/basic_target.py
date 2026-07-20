@@ -24,11 +24,6 @@ class Target:
         self._position = self._position + np.multiply(self._velocity, time - self.curTime)
         # Update internal time
         self.curTime = time
-    def update_time(self, time):
-        # Update position
-        self._update_position(time-self.curTime)
-        # Update internal time
-        self.curTime = time
     
     def _update_position(self, delTime):
         if hasattr(self, '_position'):
