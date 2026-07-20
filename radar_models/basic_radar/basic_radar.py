@@ -78,13 +78,16 @@ class Radar:
                 # Find samples in buffer
                 nSaPW = min(len(pulse['pulse']), len(self._timeProc[indtR:]))
                 # Add pulse to buffer
-                self._rxStream[indtR:indtR+nSaPW] += pulse['pulse']
+                self._rxStream[indtR:indtR+nSaPW] = self._rxStream[indtR:indtR+nSaPW] + pulse['pulse']
+                # TODO: Check for samples to be added to next buffer
                 done = True
             else:
                 # Process the signals 
                 self.process()
                 # Update process time
                 self._update_proc_time()
+                # Clear signal buffer
+                self._rxStream[:] = 0
 
     def update_position(self,time):
         # Check if position is initialized

@@ -38,16 +38,16 @@ for time in updates:
     for time in timePRI:
         # Transmit pulse
         pulse = tx.transmit_pulse(time)
-        # Update time
+        # Update position for radar and target
         tx.update_position(pulse['time'])
-        tgt.update_time(pulse['time'])
+        tgt.update_position(pulse['time'])
         # Calculate range between radar and target
         rng = scen.calcRange(tx, tgt)
         # Calculate geometry parameters
         scenParams = scen.calcPointing(tx, tgt)
         # Perform two-way propagation
         propSig, toa = prop.twoWayProp(pulse['pulse'], scenParams, rng, pulse['centerFreq'])
-        toa += time
+        toa = toa + time
         # Update pulse and send back 
         pulse['pulse'] = propSig
         pulse['time'] = toa

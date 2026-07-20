@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import matplotlib.style as mplstyle
+mplstyle.use('fast')
 import numpy as np
 import constants as c
 import waveforms.waveform as wav

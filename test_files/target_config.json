@@ -1,7 +1,7 @@
 {
     "platform": {
-        "position": [40e3, 0, 0],
-        "velocity": [100, 0, 0],
+        "position": [30e3, 0, 0],
+        "velocity": [300, 0, 0],
         "rcs": 10
     },
     "antenna": {

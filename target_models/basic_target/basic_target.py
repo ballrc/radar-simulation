@@ -15,7 +15,15 @@ class Target:
             self.curTime = 0
         else:
             raise Exception(f"Target configuration file {config_file} does not exist")
-        
+    
+    def update_position(self, time):
+        # Check if position has been initialized
+        if not hasattr(self, '_position'):
+            raise Exception("Position for target has not been initialized")
+        # Update position based on difference since last time
+        self._position = self._position + np.multiply(self._velocity, time - self.curTime)
+        # Update internal time
+        self.curTime = time
     def update_time(self, time):
         # Update position
         self._update_position(time-self.curTime)
